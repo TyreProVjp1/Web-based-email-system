@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in</title>
+  <style>
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-image: url("https://wallpapercave.com/wp/wp2757868.gif");
+  background-size: 90%;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 400px;
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.726);
+  background-color: #fff;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #7B68EE;
+  font-size: 35px;
+font-weight: bold;}
+.error-message {
+  color: #f00;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+label {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #DA70D6;
+  font-size: 20px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+input {
+  display: block;
+  width: 300px;
+  height: 30px;
+  border: 1px solid #ccc;
+  outline: #7B68EE;
+  padding: 5px;
+  font-size: 15px;
+}
+button {
+  display: block;
+  width: 200px;
+  height: 40px;
+  border: #7B68EE;
+  background-color: #FF00FF	;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 20px 0;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: oblique;
+}
+button:hover {
+  background-color: #7B68EE;
+}
+p {
+  text-align: center;
+  font-size: 16px;
+}
+a {
+  color: #7B68EE;
+  text-decoration: dashed;
+}
+a:hover {
+  text-decoration: underline;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sign In</h1>
+    <% if (typeof errorMessage !== 'undefined') { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+    <form action="/signin" method="post">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <br>
+      <button type="submit">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+  </div>
+</body>
+</html>

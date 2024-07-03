@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outbox</title>
+  <style>
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-image: url("https://images.hdqwalls.com/download/adventure-time-ty-3840x2160.jpg");
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8A2BE2	;
+  color: #fff;
+  padding: 10px;
+}
+h1 {
+  margin: 10px;
+  font-style: oblique;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 30px;
+  padding-right: 10px;
+}
+header a {
+  display: block;
+  color: #fff;
+  background-color: #CD5C5C;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+header a:hover {
+  background-color: #EE82EE;
+}
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #FFEFD5;
+  padding: 5px;
+  border-style: ridge;
+}
+nav ul {
+  display: contents;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav li {
+  justify-content:center;
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  font-style: oblique;
+  text-align: center;
+}
+nav li:hover {
+  background-color: #BA55D3	;
+}
+main {
+  width: 800px;
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+main h2 {
+  color: #333;
+  font-size: 25px;
+}
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+main li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+main a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+main a:hover {
+  color: #7B68EE	;
+}
+main div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+main div a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+main div a:hover {
+  color: #555;
+  font-weight: bold;
+  border-color: #555;
+  background-color: #CD5C5C;
+}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Greetings, <%= userFullName %>!</h1>
+    <a href="/signout">Sign Out</a>
+  </header>
+  <nav>
+    <ul>
+        <li><a href="/inbox">Inbox</a></li>
+        <li><a href="/compose">Compose</a></li>
+        <li><a href="/outbox">Outbox</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h2>Outbox</h2>
+    <ul>
+        <% emails.forEach(email => { %>
+          <li>
+            <a href="/email-detail/<%= email.id %>"><%= email.subject %></a> to <%= email.recipient_name %> at <%= email.sent_at %>
+          </li>
+        <% }); %>
+      </ul>
+    <div>
+      <% if (hasPrevPage) { %>
+        <a href="/outbox?page=<%= currentPage - 1 %>">Previous</a>
+      <% } %>
+
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/outbox?page=<%= i %>" <%= i === currentPage ? 'style="font-weight: bold;"' : '' %>><%= i %></a>
+      <% } %>
+
+      <% if (hasNextPage) { %>
+        <a href="/outbox?page=<%= currentPage + 1 %>">Next</a>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>

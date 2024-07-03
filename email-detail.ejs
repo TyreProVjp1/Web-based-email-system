@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Detail</title>
+  <style>
+      body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-image: url("https://images.hdqwalls.com/download/adventure-time-ty-3840x2160.jpg");
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+main {
+  width: 800px;
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+main h2 {
+  color: #333;
+  font-size: 25px;
+}
+main a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+main a:hover {
+  color: #555;
+  font-weight: bold;
+  border-color: #555;
+  background-color: #CD5C5C;
+}
+</style>
+</head>
+<body>
+  <main>
+  <h1>Email Detail</h1>
+  <p><b>Sender: </b> <%= email.sender_name %></p>
+  <p><b>Recipient: </b> <%= email.recipient_name %></p>
+  <p><b>Subject: </b> <%= email.subject %></p>
+  <p><b>Body: </b><%= email.body %></p>
+  <p><b>Sent At: </b><%= email.sent_at %></p>
+  
+
+  <% if (email.attachment_url) { %>
+    <p>Attachment: <a href="<%= email.attachment_url %>" download>Download Attachment</a></p>
+  <% } %>
+
+  <a href="/inbox">Back to Inbox</a>
+</body>
+</html>
